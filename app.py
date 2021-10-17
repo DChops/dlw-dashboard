@@ -62,7 +62,7 @@ with st.spinner('Loading the transform and prediction Models...'):
    # transform_model=pickle.load(open('rocket.pkl', 'rb'))
 
     # classififcation model
-    loaded_model = pickle.load(open('classifier.pkl', 'rb'))
+    #loaded_model = pickle.load(open('classifier.pkl', 'rb'))
 
     time.sleep(1)
 
