@@ -23,7 +23,7 @@ st.markdown("""
             and **our team 'EPOCH' are here to tackle this issue in real life and help people 
                 identify depression levels** and alert them  and advise them to get urgent medical care
             * The prediction uses a **continous 3-day activity data with 1-min intervals. We accpet CSV or smart watch data!!** 
-            * We have a provided a sample test data in the github repository generated using SMOTE, which can be used to test or can be refreneced and egnerate more entries for further testing.
+            * We have a provided a sample test data in the github repository generated using SMOTE, which can be used to test or can be refrenced and generate more entries for further testing.
             
             GitHub link: https://github.com/DChops/dlw-dashboard 
                  """)
@@ -94,10 +94,10 @@ else:
 with st.spinner('Loading the transform and prediction Models...'):
 
     # tranform model
-   # transform_model=pickle.load(open('rocket.pkl', 'rb'))
+    transform_model=pickle.load(open('rocket.pkl', 'rb'))
 
     # classififcation model
-    #loaded_model = pickle.load(open('classifier.pkl', 'rb'))
+    loaded_model = pickle.load(open('classifier.pkl', 'rb'))
 
     time.sleep(1)
 
