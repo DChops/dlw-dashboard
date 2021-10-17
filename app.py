@@ -100,16 +100,22 @@ with st.spinner('Loading the transform and prediction Models...'):
     # classififcation model
     loaded_model = pickle.load(open('classifier.pkl', 'rb'))
 
-    time.sleep(1)
 
 st.success('Done!')
 
-x=1
-#depressed=loaded_model.predict(x)
-# if(depressed):
-#     k=1
-# else:
-#     k=0
+with st.spinner('Now start predicting.....'):
+
+    n=np.array(np.array(df['activity']))
+    n=np.reshape(n,(1,1,n.shape[0]))
+    transformed_data=transform_model.transform(n)
+    depressed=loaded_model.predict(transformed_data)[0]
+st.success('Done!')
+
+if(depressed):
+    st.markdown("Your activity indicates, you are feeling **depressed** ☹️☹️")
+    st.write("Please visit: https://www.healthline.com/health/depression/recognizing-symptoms")
+else:
+    st.markdown("Your activity indicates, you are enjoying your day!! Carpe Diem ☺️☺️")
 
 
     #st.markdown("## Have A Nice Day !!")
