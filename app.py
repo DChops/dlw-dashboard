@@ -23,6 +23,9 @@ st.markdown("""
             and **our team 'EPOCH' are here to tackle this issue in real life and help people 
                 identify depression levels** and alert them  and advise them to get urgent medical care
             * The prediction uses a **continous 3-day activity data with 1-min intervals. We accpet CSV or smart watch data!!** 
+            * We have a provided a sample test data in the github repository generated using SMOTE, which can be used to test or can be refreneced and egnerate more entries for further testing.
+            
+            GitHub link: https://github.com/DChops/dlw-dashboard 
                  """)
 col1, col2, col3 = st.columns([1,6,1])
 
@@ -35,6 +38,7 @@ with col2:
 with col3:
     st.write("")
 
+df=pd.read_csv("Test Data.csv",delimiter='\t')
 
 uploaded_file=st.sidebar.file_uploader("Upload a CSV file of your ACTIVITY DATA",type='csv',help='Need a Time Series data with respective amount of activity')
 
@@ -54,17 +58,7 @@ if(st.sidebar.button("Click to connect your bluetooth smart watches")):
 #     time.sleep(0.1)
 #     my_bar.progress(percent_complete*10 + 10)
 # # prediction
-with st.spinner('Loading the transform and prediction Models...'):
 
-    # tranform model
-   # transform_model=pickle.load(open('rocket.pkl', 'rb'))
-
-    # classififcation model
-    #loaded_model = pickle.load(open('classifier.pkl', 'rb'))
-
-    time.sleep(1)
-
-st.success('Done!')
 
 if uploaded_file is not None:
     col1, col2 = st.columns(2)
@@ -82,8 +76,32 @@ if uploaded_file is not None:
         st.write("Interval --> ", interval)
         st.area_chart(df['activity'][interval[0]:interval[1]])
 else:
-    st.info("Please Upload your daily activity data for analysis and predictions!!")
+    st.info("Please Upload your daily activity data for analysis and predictions!!This data displayed is preloaded")
+    col1, col2 = st.columns(2)
+    with col1:
+            st.markdown("### **Dataframe**")
+            st.markdown('#')
+            st.dataframe(df,400,400)
+    with col2:
+        st.markdown("### **Visualize your activity**")
+        interval = st.slider(
+        "Choose your interval:",
+        max_value=len(df),
+        value=(0, 100))
+        st.write("Interval --> ", interval)
+        st.area_chart(df['activity'][interval[0]:interval[1]])
     
+with st.spinner('Loading the transform and prediction Models...'):
+
+    # tranform model
+   # transform_model=pickle.load(open('rocket.pkl', 'rb'))
+
+    # classififcation model
+    #loaded_model = pickle.load(open('classifier.pkl', 'rb'))
+
+    time.sleep(1)
+
+st.success('Done!')
 
 x=1
 #depressed=loaded_model.predict(x)
