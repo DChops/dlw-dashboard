@@ -3,5 +3,4 @@ sktime
 sklearn
 pandas
 numpy
-time
 pickle
