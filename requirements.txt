@@ -3,3 +3,4 @@ sktime
 sklearn
 pandas
 numpy
+gunicorn
